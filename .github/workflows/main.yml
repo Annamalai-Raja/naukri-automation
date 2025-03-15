@@ -29,10 +29,11 @@ jobs:
           java -version
           mvn -version
           
-      - name: Install Latest Google Chrome
+      - name: Install Latest Google Chrome (Using Chocolatey)
         run: |
-          winget install --id Google.Chrome --accept-source-agreements --accept-package-agreements
-          google-chrome --version
-
+          choco install googlechrome -y
+          choco upgrade googlechrome -y
+          google-chrome --version || chrome --version
+          
       - name: Install Dependencies
         run: mvn clean install 
