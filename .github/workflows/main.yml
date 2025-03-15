@@ -28,15 +28,11 @@ jobs:
         run: |
           java -version
           mvn -version
+          
+      - name: Install Latest Google Chrome
+        run: |
+          winget install --id Google.Chrome --accept-source-agreements --accept-package-agreements
+          google-chrome --version
 
       - name: Install Dependencies
-        run: mvn clean install -DskipTests
-
-      - name: Run Tests
-        run: mvn test
-
-      - name: Upload Test Reports (Optional)
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-reports
-          path: target/surefire-reports/
+        run: mvn clean install 
