@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Search Test" verbose="1">
+
+
+    <test name="Search Test">
+        <parameter name="username" value="annamalairaja2903@gmail.com"/>
+        <parameter name="password" value="8098@Ranna"/>
+        <classes>
+            <class name="naukri_ui.testClasses.UpdateProfile"/>
+        </classes>
+    </test>
+
+
+</suite>

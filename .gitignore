@@ -1,0 +1,12 @@
+.idea/
+.metadata/
+.settings/
+test-output/
+ExtentReports/
+surefire/
+target/
+videos/
+.classpath
+.project
+*.jar
+*.zip
