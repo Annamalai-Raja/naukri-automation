@@ -10,7 +10,7 @@ import static framework.utils.TestLogger.testStepsLog;
 
 public class LoginPO extends AbstractClass {
 
-    @FindBy(id = "login_Layer")
+    @FindBy(xpath = "//a[@href='https://login.naukri.com/nLogin/Login.php']")
     public WebElement btnLoginNavigation;
 
     @FindBy(xpath = "//input[contains(@placeholder , ' Username')]")

@@ -34,21 +34,16 @@ public class WebDriverInit extends Generics implements Configuration {
             if (Boolean.parseBoolean(IS_CLOUD)) {
                 caps =BrowserCaps.configureCloudBrowser(context.getCurrentXmlTest().getSuite().getName());
                 driver = new RemoteWebDriver(BrowserCaps.getRemoteURl() , caps);
-                maximizeWindow(driver);
             }
             else if(Boolean.parseBoolean(IS_GRID))
             {
                 caps = BrowserCaps.configureGridBrowser();
                 driver = new RemoteWebDriver(BrowserCaps.getGridUrl(), caps);
-                maximizeWindow(driver);
             }
             else {
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--incognito");
-                options.addArguments("--start-maximized");
-                driver = new ChromeDriver(options);
+                driver = new ChromeDriver();
             }
-
+            maximizeWindow(driver);
             openUrl(driver, URL);
             implicitWait(driver);
 
