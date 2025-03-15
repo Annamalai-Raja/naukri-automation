@@ -44,8 +44,12 @@ public class WebDriverInit extends Generics implements Configuration {
             }
             else {
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--incognito");
-                options.addArguments("--start-maximized");
+                options.addArguments("--headless=new");  // Use new headless mode
+                options.addArguments("--disable-gpu"); 
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");  
+                options.addArguments("--remote-allow-origins=*");  
+                options.addArguments("--user-data-dir=/tmp/chrome-user-data"); 
                 driver = new ChromeDriver(options);
             }
 
