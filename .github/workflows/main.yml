@@ -33,7 +33,7 @@ jobs:
         run: |
           choco install googlechrome -y
           choco upgrade googlechrome -y
-          google-chrome --version || chrome --version
+        
           
       - name: Install Dependencies
         run: mvn clean install 
