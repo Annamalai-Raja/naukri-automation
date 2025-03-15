@@ -33,8 +33,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Install Chrome and ChromeDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          sudo apt-get install -y chromium-chromedriver
+
+
       - name: Install dependencies
         run: mvn clean install -DskipTests
 
       - name: Run Tests
-        run: mvn clean install
+        run: mvn test
