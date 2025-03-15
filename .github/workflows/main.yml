@@ -1,9 +1,8 @@
-name: Run Automation Tests
+name: Run Automation Framework (Windows)
 
 on:
   schedule:
-    - cron: '30 2 * * *'  # Runs daily at 2:30 AM UTC (8:00 AM IST)
-  workflow_dispatch:  # Allows manual trigger
+    - cron: '30 3 * * *'  # 9 AM IST (IST = UTC +5:30)
   push:
     branches:
       - master
@@ -12,36 +11,32 @@ on:
       - master
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  run-tests:
+    runs-on: windows-latest  # Use Windows OS
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 21
+      - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Cache Maven dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
-      - name: Install Chrome and ChromeDriver
+      - name: Verify Java & Maven Installation
         run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-          sudo apt-get install -y chromium-chromedriver
+          java -version
+          mvn -version
 
-
-      - name: Install dependencies
+      - name: Install Dependencies
         run: mvn clean install -DskipTests
 
       - name: Run Tests
         run: mvn test
+
+      - name: Upload Test Reports (Optional)
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: target/surefire-reports/
