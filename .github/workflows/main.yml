@@ -1,39 +1,12 @@
-name: Run Automation Framework (Windows)
+#name: Run Automation Framework (Windows)
 
-on:
-  schedule:
-    - cron: '30 3 * * *'  # 9 AM IST (IST = UTC +5:30)
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-
-jobs:
-  run-tests:
-    runs-on: windows-latest  # Use Windows OS
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-
-      - name: Verify Java & Maven Installation
-        run: |
-          java -version
-          mvn -version
-          
-      - name: Install Latest Google Chrome (Using Chocolatey)
-        run: |
-          choco install googlechrome -y
-          choco upgrade googlechrome -y
-        
-          
-      - name: Install Dependencies
-        run: mvn clean install 
+#on:
+#  schedule:
+#    - cron: '30 3 * * *'  # 9 AM IST (IST = UTC +5:30)
+#  push:
+#    branches:
+#      - master
+#  pull_request:
+#    branches:
+ #     - master
+#
